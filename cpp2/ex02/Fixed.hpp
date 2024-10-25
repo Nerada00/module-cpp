@@ -19,23 +19,21 @@ public:
     Fixed(const int value);
     Fixed(const float value);
     ~Fixed();
-        Fixed &operator=(const Fixed &fix);
-        Fixed &operator+(const Fixed &rhs);
-        Fixed &operator-(const Fixed &rhs);
-        Fixed &operator*(const Fixed &rhs);
-        Fixed &operator/(const Fixed &rhs);
-
-		bool	operator>(const Fixed &fix);
-		bool	operator<(const Fixed &fix);
-		bool	operator>=(const Fixed &fix);
-		bool	operator<=(const Fixed &fix);
-		bool	operator==(const Fixed &fix);
-		bool	operator!=(const Fixed &fix);
-
-		Fixed	&operator++(void);
-		Fixed	&operator--(void);
-		Fixed	operator++(int);
-		Fixed	operator--(int);
+    Fixed &operator=(const Fixed &fix);
+    Fixed &operator+(const Fixed &rhs);
+    Fixed &operator-(const Fixed &rhs);
+    Fixed &operator*(const Fixed &rhs);
+    Fixed &operator/(const Fixed &rhs);
+	bool	operator>(const Fixed &fix);
+	bool	operator<(const Fixed &fix);
+	bool	operator>=(const Fixed &fix);
+	bool	operator<=(const Fixed &fix);
+	bool	operator==(const Fixed &fix);
+	bool	operator!=(const Fixed &fix);
+	Fixed	&operator++(void);
+	Fixed	&operator--(void);
+	Fixed	operator++(int);
+	Fixed	operator--(int);
     int getRawBits(void) const;
     void setRawBits(int const raw);
     float 	toFloat( void ) const;
