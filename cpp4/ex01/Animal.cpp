@@ -1,15 +1,15 @@
 #include "Animal.hpp"
 
 Animal::Animal(void) : type("Default") {
-    std::cout << "Default Animal constructor called" << std::endl;
+    std::cout << "Default : Animal Constructor Called" << std::endl;
 }
 
 Animal::Animal(std::string value) : type(value) {
-    std::cout << "Animal " << this->getType() << " constructor called" << std::endl;
+    std::cout << "Animal : " << this->getType() << " Constructor Called" << std::endl;
 }
 
 Animal::~Animal(void) {
-    std::cout << "Animal desstructor called" << std::endl;
+    std::cout << "Animal : Destructor Called" << std::endl;
 }
 
 void   Animal::setType(std::string value) {

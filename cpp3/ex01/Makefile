@@ -3,7 +3,7 @@ SRCS = 	main.cpp\
 		ScavTrap.cpp\
 
 OBJS = $(SRCS:.cpp=.o)
-NAME = ex00
+NAME = ex01
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I.
 RM = rm -f

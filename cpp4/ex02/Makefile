@@ -1,7 +1,10 @@
 SRCS = 	main.cpp\
-		ClapTrap.cpp\
-		ScavTrap.cpp\
-		FragTrap.cpp\
+		AAnimal.cpp\
+		WrongAnimal.cpp\
+		Dog.cpp\
+		Cat.cpp\
+		WrongCat.cpp\
+		Brain.cpp\
 
 OBJS = $(SRCS:.cpp=.o)
 NAME = ex02
