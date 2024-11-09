@@ -12,5 +12,5 @@ int main()
     for (int i = 0; i < 4; i++) {
         delete animals[i];
     }
-return 0;
+    return 0;
 }

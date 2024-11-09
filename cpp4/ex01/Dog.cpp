@@ -19,11 +19,16 @@ Dog::~Dog() {
 
 Dog&   Dog::operator=(const Dog& value) {
     this->type = value.getType();
+    *this->_brain = *value.getBrain();
     return (*this);
 }
 
 std::string   Dog::getType(void) const {
     return (this->type);
+}
+
+Brain   *Dog::getBrain(void) const {
+    return (this->_brain);
 }
 
 void Dog::makeSound (void) const {

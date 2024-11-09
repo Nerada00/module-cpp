@@ -18,7 +18,12 @@ Cat::~Cat(void) {
 
 Cat&   Cat::operator=(const Cat& value) {
     this->type = value.getType();
+    *this->_brain = *value.getBrain();
     return (*this);
+}
+
+Brain   *Cat::getBrain(void) const {
+    return (this->_brain);
 }
 
 std::string   Cat::getType(void) const {
