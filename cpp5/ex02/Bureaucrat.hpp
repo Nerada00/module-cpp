@@ -4,12 +4,15 @@
 #include <iostream>
 #include <cctype>
 #include <stdexcept>
+#include "AForm.hpp"
+
+class AForm;
 
 class Bureaucrat {
 
     private:
         const std::string _name;
-        int _grade;
+        size_t _grade;
 
     public:
         class GradeTooHighException : public std::exception
@@ -27,10 +30,12 @@ class Bureaucrat {
         Bureaucrat (Bureaucrat const & src);
         ~Bureaucrat();
         const std::string getName(void) const;
-        int getGrade(void) const;
-        void setGrade(int value);
+        void signForm(AForm &form);
+        size_t getGrade(void) const;
+        void setGrade(size_t value);
         void incrementGrade(void);
         void decrementGrade(void);
+        void		executeForm ( AForm const &AForm );
         Bureaucrat  &operator=(const Bureaucrat &rhs);
 };
 

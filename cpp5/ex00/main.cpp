@@ -22,8 +22,6 @@ int main(void) {
         test2.decrementGrade();
         std::cout << test2.getGrade() << std::endl;
         std::cout << "je n apparait pas sur le terminal" << std::endl;
-
-
     }
     catch ( std::exception &error ) {
 		std::cerr << "Enter in catch because : ";
@@ -57,5 +55,4 @@ int main(void) {
 		std::cerr << "Enter in catch because : ";
 		std::cerr << error.what() << "\n";
 	}
-
 }
