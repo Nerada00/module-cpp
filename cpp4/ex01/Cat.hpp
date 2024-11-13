@@ -15,6 +15,7 @@ class Cat: public Animal {
         Cat&   operator=(const Cat& value);
         Cat(void);
         Cat(std::string value);
+        Cat(Cat const &src);
         ~Cat(void);
         Brain   *getBrain(void) const;
         virtual std::string   getType(void) const;

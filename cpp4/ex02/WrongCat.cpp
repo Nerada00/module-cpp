@@ -8,6 +8,10 @@ WrongCat::WrongCat( std::string value ) : WrongAnimal(value) {
     std::cout << "WrongCat : Constructor Called"  << std::endl;
 }
 
+WrongCat::WrongCat(WrongCat const &src) {
+    *this = src;
+}
+
 WrongCat::~WrongCat(void) {
     std::cout << "WrongCat : Destructor Called"  << std::endl; 
 }

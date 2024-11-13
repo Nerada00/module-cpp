@@ -13,6 +13,7 @@ protected:
 public:
 
     WrongAnimal();
+    WrongAnimal(WrongAnimal const &src);
     WrongAnimal(std::string type);
     ~WrongAnimal();
     void makeSound(void) const;

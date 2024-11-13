@@ -6,6 +6,10 @@ Dog::Dog(void) : AAnimal("Dog") {
 
 }
 
+Dog::Dog(Dog const &src) {
+    *this = src;
+}
+
 Dog::Dog( std::string value ) : AAnimal(value) {
     std::cout << "Dog : Constructor Called" << std::endl;
     this->_brain = new Brain();

@@ -4,6 +4,10 @@ Dog::Dog(void) : Animal("Dog") {
     std::cout << "Dog : Default Constructor Called" << std::endl; 
 }
 
+Dog::Dog(Dog const &src) {
+    *this = src;
+}
+
 Dog::Dog( std::string value ) : Animal(value) {
     std::cout << "Dog : Constructor Called" << std::endl;
 }

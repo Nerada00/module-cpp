@@ -10,9 +10,12 @@ class Brain {
         std::string _ideas[100];
 
     public:
+
         Brain(void);
+        Brain(Brain const &src);
         ~Brain(void);
-        std::string getIdeas(void) const;
+        Brain &operator=(Brain const &rhs);
+        std::string *getIdeas(void) const;
         void setIdeas(std::string *idea);
 
 };

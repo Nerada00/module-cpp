@@ -6,7 +6,7 @@
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
 
-class Cure : public AMateria{
+class Cure : public AMateria {
 
     public:
         Cure();

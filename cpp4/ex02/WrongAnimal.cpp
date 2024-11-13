@@ -8,6 +8,10 @@ WrongAnimal::WrongAnimal(std::string value) : type(value) {
     std::cout << "WrongAnimal " << this->getType() << " constructor called" << std::endl;
 }
 
+WrongAnimal::WrongAnimal(WrongAnimal const &src) {
+    *this = src;
+}
+
 WrongAnimal::~WrongAnimal(void) {
     std::cout << "WrongAnimal desstructor called" << std::endl;
 }

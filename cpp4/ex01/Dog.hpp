@@ -15,6 +15,7 @@ class Dog: public Animal {
         Dog&   operator=(const Dog& value);
         Dog(void);
         Dog(std::string value);
+        Dog(Dog const &src);
         ~Dog(void);
         Brain   *getBrain(void) const;
         virtual std::string   getType(void) const;

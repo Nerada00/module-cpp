@@ -24,10 +24,10 @@ Character & Character::operator=(Character const & rhs) {
         for (int i = 0; i < 4; ++i) 
         {
             delete _inventory[i];  
-            if (rhs._inventory[i] != nullptr) 
+            if (rhs._inventory[i] != 0) 
                 _inventory[i] = rhs._inventory[i]->clone();
             else
-                _inventory[i] = nullptr;
+                _inventory[i] = 0;
         }
     }
     return *this;
@@ -50,7 +50,7 @@ void Character::equip(AMateria* m) {
         return;
     for (int i = 0; i < MAX; i++)
     {
-        if (this->_inventory[i] == nullptr)
+        if (this->_inventory[i] == 0)
         {
             this->_inventory[i] = m;
             // std::cout << "Equipped " << m->getType() << " in slot " << i << std::endl;
@@ -61,7 +61,7 @@ void Character::equip(AMateria* m) {
 
 void Character::unequip(int idx) {
     if (idx >= 0 && idx < MAX)
-        this->_inventory[idx] = nullptr;
+        this->_inventory[idx] = 0;
 }
 
 void Character::use(int idx, ICharacter &target) {

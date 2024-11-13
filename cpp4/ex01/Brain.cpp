@@ -4,12 +4,23 @@ Brain::Brain(void) {
     std::cout << "Brain : Construcor Called" << std::endl;
 }
 
+Brain::Brain(Brain const &src) {
+    *this = src;
+}
+
 Brain::~Brain(void) {
     std::cout << "Brain : Destrucor Called" << std::endl;
 }
 
-std::string Brain::getIdeas(void) const {
-    return *this->_ideas;
+Brain &Brain::operator=(Brain const &rhs )
+{
+	if ( this != &rhs )
+		this->setIdeas(rhs.getIdeas());
+	return *this;
+}
+
+std::string *Brain::getIdeas(void) const {
+    return (std::string *)this->_ideas;
 }
 
 

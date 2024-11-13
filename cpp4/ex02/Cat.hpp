@@ -12,10 +12,11 @@ class Cat: public AAnimal {
 
     public:
         
-        Cat&   operator=(const Cat& value);
-        Cat(void);
+        Cat();
+        Cat(Cat const &src);
         Cat(std::string value);
         ~Cat(void);
+        Cat&   operator=(const Cat& value);
         Brain   *getBrain(void) const;
         virtual std::string   getType(void) const;
         virtual void makeSound (void) const;

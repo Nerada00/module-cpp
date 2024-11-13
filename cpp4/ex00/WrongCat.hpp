@@ -8,10 +8,11 @@ class WrongCat: public WrongAnimal {
     
     public:
         
-        WrongCat&   operator=(const WrongCat& value);
-        WrongCat(void);
+        WrongCat();
+        WrongCat(WrongCat const &src);
         WrongCat(std::string value);
         ~WrongCat(void);
+        WrongCat&   operator=(const WrongCat& value);
         std::string   getType(void) const;
         void makeSound (void) const;
 };

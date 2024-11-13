@@ -4,6 +4,10 @@ WrongAnimal::WrongAnimal(void) : type("Default") {
     std::cout << "Default WrongAnimal constructor called" << std::endl;
 }
 
+WrongAnimal::WrongAnimal(WrongAnimal const &src) {
+    *this = src;
+}
+
 WrongAnimal::WrongAnimal(std::string value) : type(value) {
     std::cout << "WrongAnimal " << this->getType() << " constructor called" << std::endl;
 }

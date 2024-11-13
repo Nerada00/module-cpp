@@ -6,9 +6,10 @@ class Dog: public Animal {
    
     public:
         
-        Dog&   operator=(const Dog& value);
-        Dog(void);
+        Dog();
+        Dog(Dog const &src);
         Dog(std::string value);
+        Dog&   operator=(const Dog& value);
         ~Dog(void);
         virtual std::string   getType(void) const;
         virtual void makeSound (void) const;

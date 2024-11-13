@@ -8,6 +8,10 @@ AAnimal::AAnimal(std::string value) : type(value) {
     std::cout << "AAnimal : " << this->getType() << " Constructor Called" << std::endl;
 }
 
+AAnimal::AAnimal(AAnimal const &src) {
+    *this = src;
+}
+
 AAnimal::~AAnimal(void) {
     std::cout << "AAnimal : Destructor Called" << std::endl;
 }
@@ -23,8 +27,4 @@ AAnimal&   AAnimal::operator=(const AAnimal& value) {
 
 std::string   AAnimal::getType(void) const {
     return (this->type);
-}
-
-void AAnimal::makeSound (void) const {
-	std::cout  << this->getType() << " : == MAKE SOUND == !" << std::endl;
 }

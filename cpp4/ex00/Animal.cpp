@@ -4,6 +4,10 @@ Animal::Animal(void) : type("Default") {
     std::cout << "Default Animal constructor called" << std::endl;
 }
 
+Animal::Animal(Animal const &src) {
+    *this = src;
+}
+
 Animal::Animal(std::string value) : type(value) {
     std::cout << "Animal " << this->getType() << " constructor called" << std::endl;
 }

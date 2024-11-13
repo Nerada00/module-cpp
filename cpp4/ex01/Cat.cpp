@@ -11,6 +11,10 @@ Cat::Cat( std::string value ) : Animal(value) {
 
 }
 
+Cat::Cat(Cat const &src) {
+    *this = src;
+}
+
 Cat::~Cat(void) {
     std::cout << "Cat : Destructor Called"  << std::endl; 
     delete this->_brain;

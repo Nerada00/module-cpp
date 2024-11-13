@@ -13,8 +13,8 @@ protected:
 public:
 
     AAnimal();
+    AAnimal(AAnimal const &src);
     AAnimal(std::string type);
-
     virtual ~AAnimal();
     virtual void makeSound(void) const = 0;
     virtual void   setType(std::string value);

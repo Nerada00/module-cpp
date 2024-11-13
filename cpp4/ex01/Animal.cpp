@@ -8,6 +8,10 @@ Animal::Animal(std::string value) : type(value) {
     std::cout << "Animal : " << this->getType() << " Constructor Called" << std::endl;
 }
 
+Animal::Animal(Animal const &src) {
+    *this = src;
+}
+
 Animal::~Animal(void) {
     std::cout << "Animal : Destructor Called" << std::endl;
 }

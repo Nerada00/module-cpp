@@ -12,9 +12,10 @@ class Dog: public AAnimal {
 
     public:
         
-        Dog&   operator=(const Dog& value);
         Dog(void);
+        Dog(Dog const &src);
         Dog(std::string value);
+        Dog&   operator=(const Dog& value);
         ~Dog(void);
         Brain   *getBrain(void) const;
         virtual std::string   getType(void) const;

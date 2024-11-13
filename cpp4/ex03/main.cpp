@@ -21,8 +21,8 @@ int main()
         tmp = src->createMateria("cure");
         me->equip(tmp);
     }
-    // std::cout << tmp->getType();
-    me->unequip(1);
+
+    me->unequip(0);
  
     for (int i = 0; i < 4; i++)
         me->use(i, *bob);

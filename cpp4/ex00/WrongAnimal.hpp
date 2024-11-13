@@ -14,6 +14,7 @@ public:
 
     WrongAnimal();
     WrongAnimal(std::string type);
+    WrongAnimal(WrongAnimal const &src);
     ~WrongAnimal();
     void makeSound(void) const;
     void   setType(std::string value);

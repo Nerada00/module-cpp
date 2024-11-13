@@ -10,6 +10,7 @@ class WrongCat: public WrongAnimal {
         
         WrongCat&   operator=(const WrongCat& value);
         WrongCat(void);
+        WrongCat(WrongCat const &src);
         WrongCat(std::string value);
         ~WrongCat(void);
         std::string   getType(void) const;

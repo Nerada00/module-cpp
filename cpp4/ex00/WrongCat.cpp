@@ -4,6 +4,10 @@ WrongCat::WrongCat(void) : WrongAnimal("WrongCat") {
     std::cout << "WrongCat : Default Constructor Called"  << std::endl; 
 }
 
+WrongCat::WrongCat(WrongCat const &src) {
+    *this = src;
+}
+
 WrongCat::WrongCat( std::string value ) : WrongAnimal(value) {
     std::cout << "WrongCat : Constructor Called"  << std::endl;
 }

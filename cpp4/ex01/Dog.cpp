@@ -12,6 +12,10 @@ Dog::Dog( std::string value ) : Animal(value) {
 
 }
 
+Dog::Dog(Dog const &src) {
+    *this = src;
+}
+
 Dog::~Dog() {
     std::cout << "Dog : Destructor Called" << std::endl;
     delete this->_brain;
