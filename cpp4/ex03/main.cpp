@@ -22,8 +22,9 @@ int main()
         me->equip(tmp);
     }
 
-    me->unequip(0);
- 
+    // me->unequip(0);
+
+
     for (int i = 0; i < 4; i++)
         me->use(i, *bob);
 
