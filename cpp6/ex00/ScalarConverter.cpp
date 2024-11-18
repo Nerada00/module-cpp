@@ -1,16 +1,9 @@
 #include "ScalarConverter.hpp"
 
 // Orthodox Canonical Form inutile mais obligatoire donc bon
-ScalarConverter::ScalarConverter() {
-}
-
-ScalarConverter::ScalarConverter(const ScalarConverter &src) {
-    *this = src;
-}
-
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter &) {
-    return *this;
-}
+ScalarConverter::ScalarConverter() {}
+ScalarConverter::ScalarConverter(const ScalarConverter &src) { *this = src; }
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &) { return *this; }
 
 // Recuperer les types
 bool ScalarConverter::isChar(const std::string &literal) {
