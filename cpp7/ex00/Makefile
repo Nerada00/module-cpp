@@ -8,11 +8,11 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I.
 RM = rm -f
 
 all: $(NAME)
+$(NAME): $(OBJS)
+	@$(CXX) $(OBJS) $(CXXFLAGS) -o $(NAME)
 	@echo
 	@echo "\033[32m=========== Success =========== \033[0m"
 	@echo
-$(NAME): $(OBJS)
-	@$(CXX) $(OBJS) $(CXXFLAGS) -o $(NAME)
 
 %.o: %.cpp
 	@$(CXX) $(CXXFLAGS) -c $< -o $@

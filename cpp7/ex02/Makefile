@@ -2,7 +2,7 @@ SRCS = 	main.cpp\
 
 
 OBJS = $(SRCS:.cpp=.o)
-NAME = ex01
+NAME = ex02
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I.
 RM = rm -f
