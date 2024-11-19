@@ -8,11 +8,12 @@ int main()
         str[0] = "coucou";  
         str[1] = "c est";  
         str[2] = "moi";
-        std::cout << str[12] << '\n';
+        std::cout << str << '\n';
     }
     catch (std::exception &e) {
         std::cout << e.what() << '\n';
     }
+
     try {
 
         Array<int> str2(3);
@@ -25,6 +26,7 @@ int main()
     catch (std::exception &e) {
         std::cout << e.what() << '\n';
     }
+
     try {
         Array<float> str3(3);
         std::cout << "\nSize of Array is " << str3.size() << '\n';
@@ -32,6 +34,18 @@ int main()
         str3[1] = 2.1f;  
         str3[2] = 3.1f;
         std::cout << str3 << "\n";
+    }
+    catch (std::exception &e) {
+        std::cout << e.what() << '\n';
+    }
+    // OOB
+    try {
+        Array<int> str(3);
+        std::cout << "\nSize of Array is " << str.size() << '\n';
+        str[0] = 59;
+        str[1] = 54;
+        str[2] = 51;
+        std::cout << str[3] << '\n';
     }
     catch (std::exception &e) {
         std::cout << e.what() << '\n';
