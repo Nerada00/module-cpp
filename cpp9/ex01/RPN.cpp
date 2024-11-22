@@ -1,4 +1,8 @@
 #include "RPN.hpp"
+#include <sstream>
+#include <stdexcept>
+#include <cctype> // Pour isdigit
+#include <stack> // Pour std::stack
 
 RPN::RPN() {}
 RPN::~RPN() {}
@@ -27,6 +31,16 @@ double RPN::applyOperator(const std::string &op, double operand1, double operand
     throw std::runtime_error("Error: Unknown operator.");
 }
 
+double RPN::stringToDouble(const std::string &str) {
+    std::istringstream iss(str);
+    double value;
+    if (!(iss >> value)) {
+        throw std::runtime_error("Error: invalid number format.");
+    }
+    return value;
+}
+
+
 double RPN::evaluate(const std::string &expression) {
     std::stack<double> stack;
     std::istringstream tokens(expression);
@@ -34,22 +48,22 @@ double RPN::evaluate(const std::string &expression) {
 
     while (tokens >> token) {
         if (isNumber(token)) {
-            stack.push(std::stod(token));
+            stack.push(stringToDouble(token)); // Utilise stringToDouble
         } else if (isOperator(token)) {
             if (stack.size() < 2)
-                throw std::runtime_error("Error\n");
+                throw std::runtime_error("Error: insufficient operands.");
             
             double operand2 = stack.top(); stack.pop();
             double operand1 = stack.top(); stack.pop();
             double result = applyOperator(token, operand1, operand2);
             stack.push(result);
         } else {
-            throw std::runtime_error("Error\n");
+            throw std::runtime_error("Error: invalid token.");
         }
     }
 
     if (stack.size() != 1)
-        throw std::runtime_error("Error\n");
+        throw std::runtime_error("Error: invalid RPN expression.");
     
     return stack.top();
 }

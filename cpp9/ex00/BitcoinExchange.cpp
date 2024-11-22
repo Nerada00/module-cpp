@@ -10,36 +10,40 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &rhs) {
         this->_inputFile = rhs._inputFile;
         this->_data = rhs._data;
     }
-    return (*this);
+    return *this;
 }
 
-std::ifstream BitcoinExchange::openFile(const std::string &filename) {
-    std::ifstream file(filename.c_str());
-    if (!file.is_open()) {
+std::ifstream *BitcoinExchange::openFile(const std::string &filename) {
+    std::ifstream *file = new std::ifstream(filename.c_str());
+    if (!file->is_open()) {
+        delete file;
         throw std::runtime_error("Error: could not open file.");
     }
-    return (file);
+    return file;
 }
 
 bool BitcoinExchange::parseDate(const std::string &date) {
     if (date.size() != 10 || date[4] != '-' || date[7] != '-') 
-        return (false);
+        return false;
 
-    int year = std::stoi(date.substr(0, 4));
-    int month = std::stoi(date.substr(5, 2));
-    int day = std::stoi(date.substr(8, 2));
+    int year, month, day;
+    std::istringstream issYear(date.substr(0, 4));
+    std::istringstream issMonth(date.substr(5, 2));
+    std::istringstream issDay(date.substr(8, 2));
+    if (!(issYear >> year) || !(issMonth >> month) || !(issDay >> day)) 
+        return false;
 
     if (month < 1 || month > 12)
-        return (false);
+        return false;
 
     const int validDay[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     if (month == 2 && bissextileDate(year)) {
         if (day < 1 || day > 29)
-            return (false);
+            return false;
     } else if (day < 1 || day > validDay[month - 1]) {
-        return (false);
+        return false;
     }
-    return (true);
+    return true;
 }
 
 bool BitcoinExchange::bissextileDate(int year) {
@@ -47,14 +51,11 @@ bool BitcoinExchange::bissextileDate(int year) {
 }
 
 bool BitcoinExchange::parseValue(const std::string &value) {
-    try {
-        float num = std::stof(value);
-        if (num < 0 || num > 1000)
-            return (false);
-    } catch (...) {
-        return (false);
-    }
-    return (true);
+    std::istringstream iss(value);
+    float num;
+    if (!(iss >> num) || num < 0 || num > 1000)
+        return false;
+    return true;
 }
 
 float BitcoinExchange::findClosestRate(const std::string &date) {
@@ -65,15 +66,15 @@ float BitcoinExchange::findClosestRate(const std::string &date) {
             throw std::runtime_error("Error: no earlier date available.");
         --it;
     }
-    return (it->second);
+    return it->second;
 }
 
 void BitcoinExchange::loadDataFile(const std::string &dataFile) {
-    std::ifstream file = openFile(dataFile);
+    std::ifstream *file = openFile(dataFile);
     std::string line;
 
-    while (std::getline(file, line)) {
-        if (line.empty()) 
+    while (std::getline(*file, line)) {
+        if (line.empty())
             continue;
 
         size_t sepPos = line.find(',');
@@ -90,29 +91,26 @@ void BitcoinExchange::loadDataFile(const std::string &dataFile) {
             continue;
         }
 
-        try {
-            float rate = std::stof(rateStr);
-            if (rate < 0) {
-                std::cerr << "Error: invalid rate => " << rateStr << '\n';
-                continue;
-            }
-            _data[date] = rate;
-        } 
-        catch (...) 
-        {
-            std::cerr << "Error: invalid rate format => " << rateStr << '\n';
+        std::istringstream iss(rateStr);
+        float rate;
+        if (!(iss >> rate) || rate < 0) {
+            std::cerr << "Error: invalid rate => " << rateStr << '\n';
+            continue;
         }
+
+        _data[date] = rate;
     }
 
-    file.close();
+    file->close();
+    delete file;
 }
 
 void BitcoinExchange::processFile() {
-    std::ifstream file = openFile(_inputFile);
+    std::ifstream *file = openFile(_inputFile);
     std::string line;
 
-    while (std::getline(file, line)) {
-        if (line.empty()) 
+    while (std::getline(*file, line)) {
+        if (line.empty())
             continue;
 
         size_t sepPos = line.find(" | ");
@@ -135,16 +133,18 @@ void BitcoinExchange::processFile() {
 
         try {
             float rate = findClosestRate(date);
-            float value = std::stof(valueStr);
+            std::istringstream iss(valueStr);
+            float value;
+            iss >> value;
             float result = rate * value;
 
             std::cout << date << " => " << valueStr << " = " << result << '\n';
         }
-        catch (const std::exception &e)
-        {
+        catch (const std::exception &e) {
             std::cerr << e.what() << '\n';
         }
     }
 
-    file.close();
+    file->close();
+    delete file;
 }

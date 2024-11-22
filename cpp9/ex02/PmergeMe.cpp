@@ -35,7 +35,6 @@ std::vector<int> PmergeMe::JacobsthalCeBeauGosse(int size) {
 }
 
 void PmergeMe::mergeInsertSortVector(std::vector<int>& arr) {
-
     if (arr.size() <= 1)
         return;
 
@@ -45,20 +44,13 @@ void PmergeMe::mergeInsertSortVector(std::vector<int>& arr) {
     mergeInsertSortVector(left);
     mergeInsertSortVector(right);
 
+
     std::vector<int> merged;
     std::merge(left.begin(), left.end(), right.begin(), right.end(), std::back_inserter(merged));
 
-    std::vector<int> jacobsthal = JacobsthalCeBeauGosse(merged.size());
-
-    for (size_t i = 0; i < jacobsthal.size(); ++i) {
-        if (jacobsthal[i] < (int)merged.size()) {
-            arr[i] = merged[jacobsthal[i]];
-        }
-    }
+    arr = merged;
 }
-
 void PmergeMe::mergeInsertSortList(std::list<int>& lst) {
-
     if (lst.size() <= 1)
         return;
 
@@ -66,25 +58,18 @@ void PmergeMe::mergeInsertSortList(std::list<int>& lst) {
     size_t halfSize = lst.size() / 2;
     std::list<int>::iterator it = lst.begin();
 
-    for (size_t i = 0; i < halfSize; ++i, ++it) left.push_back(*it);
-    for (; it != lst.end(); ++it) right.push_back(*it);
+    for (size_t i = 0; i < halfSize; ++i, ++it) 
+        left.push_back(*it);
+    for (; it != lst.end(); ++it) 
+        right.push_back(*it);
 
     mergeInsertSortList(left);
     mergeInsertSortList(right);
 
     lst.clear();
     std::merge(left.begin(), left.end(), right.begin(), right.end(), std::back_inserter(lst));
-    std::vector<int> jacobsthal = JacobsthalCeBeauGosse(lst.size());
-    it = lst.begin();
-    size_t index = 0;
-    
-    for (size_t i = 0; i < jacobsthal.size(); ++i) {
-        if (jacobsthal[i] < (int)lst.size()) {
-            std::advance(it, jacobsthal[i] - index);
-            index = jacobsthal[i];
-        }
-    }
 }
+
 
 void PmergeMe::sortAndMeasureTime() {
     struct timeval start, end;
